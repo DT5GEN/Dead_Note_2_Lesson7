@@ -18,11 +18,13 @@ public class ColorViewHolder extends RecyclerView.ViewHolder {
 
     private final TextView nameTextView = itemView.findViewById(R.id.color_name_text_view);
     private final CardView rootCardView = itemView.findViewById(R.id.root_card_view);
+    private final TextView numberTextView = itemView.findViewById(R.id.color_number_text_view);
 
-    public ColorViewHolder(@NonNull ViewGroup parent) {
+    public ColorViewHolder(@NonNull ViewGroup parent , int holderNumber) {
         // запоминает созданные вьюшки, razduvayet i  napolnyaet i hranit na sebya ssilki
         super(LayoutInflater.from(parent.getContext())
                .inflate(R.layout.item_color, parent, false));
+        numberTextView.setText("№ " + holderNumber);
 //        View view = LayoutInflater.from(parent.getContext())
 //                .inflate(R.layout.item_color, parent, false);
 //        super(view);

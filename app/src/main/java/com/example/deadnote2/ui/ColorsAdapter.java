@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ColorsAdapter extends RecyclerView.Adapter<ColorViewHolder> {
+
+    private int holdersCounters = 0;
     // hranit kopiyu dannih
     private final List<ColorEntity> data = new ArrayList<>();
 
@@ -18,7 +20,7 @@ public class ColorsAdapter extends RecyclerView.Adapter<ColorViewHolder> {
     @Override
     public ColorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // sozdayutsa view holdery
-        return new ColorViewHolder(parent);
+        return new ColorViewHolder(parent, holdersCounters++);
     }
 
     @Override
