@@ -15,6 +15,13 @@
         android:text="scroll to Hell"
         android:layout_margin="8dp"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/activity_main__create_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="create color tabs"
+        android:layout_margin="8dp"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

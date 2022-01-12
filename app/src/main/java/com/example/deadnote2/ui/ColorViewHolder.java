@@ -75,6 +75,8 @@ public class ColorViewHolder extends RecyclerView.ViewHolder {
 
         void onClickItem(ColorEntity item);
 
+        void onCreateItem(ColorEntity item);
+
 
     }
 }

@@ -15,6 +15,8 @@ import com.example.deadnote2.data.SimpleColorsRepoImpl;
 import com.example.deadnote2.domain.ColorEntity;
 import com.example.deadnote2.domain.ColorsRepo;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -23,7 +25,10 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout rootLinearLayout;
     private Button scrollButton;
 
+    private Button onCreateButton;
+
     private ColorsRepo colorsRepo;
+    private ColorsRepo addColorsRepo = SimpleColorsRepoImpl.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +38,29 @@ public class MainActivity extends AppCompatActivity {
         colorsRepo = App.get().colorsRepo;
 
         scrollButton = findViewById(R.id.activity_main__scroll_button);
-            scrollButton.setOnClickListener(v -> {
-                recyclerView.smoothScrollToPosition(adapter.getItemCount());
-            });
+        scrollButton.setOnClickListener(v -> {
+            recyclerView.smoothScrollToPosition(adapter.getItemCount());
+        });
 
         rootLinearLayout = findViewById(R.id.root_linear_layout);
+
+        onCreateButton = findViewById(R.id.activity_main__create_button);
+        onCreateButton.setOnClickListener(v -> {
+            onCreateButton();
+            recyclerView.setAdapter(adapter);
+            Toast.makeText(this, "Создавайся! ", Toast.LENGTH_SHORT).show();
+        });
         initRecycler();
 
     }
+
 
     private void initRecycler() {
         recyclerView = findViewById(R.id.activity_main__recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ColorsAdapter();
         recyclerView.setAdapter(adapter);
-      //  App.get().colorsRepo.getColors(); заменяем в аргумент сет дата
+        //  App.get().colorsRepo.getColors(); заменяем в аргумент сет дата
         adapter.setData(colorsRepo.getColors());
         adapter.setOnItemClickListener(new ColorViewHolder.OnItemsClickListener() {
 
@@ -56,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "DELete " + item.getHexString(), Toast.LENGTH_SHORT).show();
                 colorsRepo.deleteItem(item.getId());
                 adapter.deleteItem(item.getId()); // заменяем setData, что бы поштучно вносить изменения
-              //  adapter.setData(colorsRepo.getColors());
+                //  adapter.setData(colorsRepo.getColors());
             }
 
             @Override
@@ -64,22 +77,38 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Fresh " + item.getHexString(), Toast.LENGTH_SHORT).show();
 
             }
+
             // получаеm сообщение с + данные из ColorEntity
             @Override
             public void onClickItem(ColorEntity item) {
                 rootLinearLayout.setBackgroundColor(item.getColor());
             }
+
+            @Override
+            public void onCreateItem(ColorEntity item) {
+                onCreateButton();
+                Toast.makeText(MainActivity.this, "Создавайся! " + item.getHexString(), Toast.LENGTH_SHORT).show();
+
+            }
         });
     }
 
-    private void onDeleteItem(ColorEntity colorEntity){
+    private void onDeleteItem(ColorEntity colorEntity) {
         Toast.makeText(this, "DELete " + colorEntity.getHexString(), Toast.LENGTH_SHORT).show();
     }
-    private void onRefreshItem(ColorEntity colorEntity){
+
+    private void onRefreshItem(ColorEntity colorEntity) {
         Toast.makeText(this, "Fresh " + colorEntity.getHexString(), Toast.LENGTH_SHORT).show();
     }
+
     // получаеm сообщение с + данные из ColorEntity
-    private void onClickItem(ColorEntity colorEntity){
+    private void onClickItem(ColorEntity colorEntity) {
         Toast.makeText(this, "Root " + colorEntity.getHexString(), Toast.LENGTH_SHORT).show();
+    }//
+
+    // получаеm сообщение с + данные из ColorEntity
+    private void onCreateButton() {
+        addColorsRepo.regenerateAddColors(1);
+
     }
 }
