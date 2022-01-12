@@ -39,6 +39,24 @@
             android:textSize="40sp"
             tools:text="#aacc45"
              />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_color__refresh_image_view"
+                android:src="@drawable/ic_baseline_replay_24"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="56dp"
+                android:layout_height="56dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_color__delete_image_view"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_baseline_delete_forever_24"
+                android:layout_width="56dp"
+                android:layout_height="56dp"/>
+
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
