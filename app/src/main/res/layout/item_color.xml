@@ -18,43 +18,44 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
         <TextView
-            android:id="@+id/color_number_text_view"
+            android:id="@+id/heading_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="49sp"
+            android:textSize="29sp"
             android:textStyle="bold"
             android:layout_marginEnd="8dp"
             tools:text="№ 1 "
 
              />
         <TextView
-            android:id="@+id/color_name_text_view"
+            android:id="@+id/preview_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="40sp"
+            android:textSize="20sp"
             tools:text="#aacc45"
              />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/item_color__refresh_image_view"
-                android:src="@drawable/ic_baseline_replay_24"
+                android:src="@drawable/ic_baseline_done_outline_24"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_width="56dp"
-                android:layout_height="56dp"/>
+                android:layout_width="26dp"
+                android:layout_height="26dp"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/item_color__delete_image_view"
                 android:clickable="true"
                 android:focusable="true"
+                android:layout_gravity="end"
                 android:src="@drawable/ic_baseline_delete_forever_24"
-                android:layout_width="56dp"
-                android:layout_height="56dp"/>
+                android:layout_width="26dp"
+                android:layout_height="26dp"/>
 
 
         </LinearLayout>

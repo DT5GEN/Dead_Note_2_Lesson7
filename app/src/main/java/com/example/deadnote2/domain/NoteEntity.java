@@ -1,12 +1,14 @@
 package com.example.deadnote2.domain;
 
 //POJO
-public class ColorEntity {
+public class NoteEntity {
     private String id;
     private int color;
+    private String headingText;
+    private String storyOfTheMurderText;
 
 
-    public ColorEntity(String id, int color ){
+    public NoteEntity(String id, int color ){
         this.id = id;
         this.color = color;
     }

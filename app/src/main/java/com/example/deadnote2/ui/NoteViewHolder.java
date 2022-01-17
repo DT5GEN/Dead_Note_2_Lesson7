@@ -2,64 +2,61 @@ package com.example.deadnote2.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.deadnote2.R;
-import com.example.deadnote2.domain.ColorEntity;
+import com.example.deadnote2.domain.NoteEntity;
 
-public class ColorViewHolder extends RecyclerView.ViewHolder {
+public class NoteViewHolder extends RecyclerView.ViewHolder {
 
-    private final TextView nameTextView = itemView.findViewById(R.id.color_name_text_view);
+    private final TextView nameTextView = itemView.findViewById(R.id.preview_text_view);
     private final CardView rootCardView = itemView.findViewById(R.id.root_card_view);
-    private final TextView numberTextView = itemView.findViewById(R.id.color_number_text_view);
+    private final TextView numberTextView = itemView.findViewById(R.id.heading_text_view);
     private final AppCompatImageView refreshImageView = itemView.findViewById(R.id.item_color__refresh_image_view);
     private final AppCompatImageView deleteImageView = itemView.findViewById(R.id.item_color__delete_image_view);
 
     @NonNull
-    private ColorEntity colorEntity;
+    private NoteEntity noteEntity;
 
-    public ColorViewHolder(@NonNull ViewGroup parent,
-                           int holderNumber,
-                           OnItemsClickListener onItemsClickListener
+    public NoteViewHolder(@NonNull ViewGroup parent,
+                          int holderNumber,
+                          OnItemsClickListener onItemsClickListener
     ) {
         // запоминает созданные вьюшки, razduvayet i  napolnyaet i hranit na sebya ssilki
         super(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_color, parent, false));
-        numberTextView.setText("№ " + holderNumber);
+        numberTextView.setText(" " + holderNumber);
 //        View view = LayoutInflater.from(parent.getContext())
 //                .inflate(R.layout.item_color, parent, false);
 //        super(view);
         deleteImageView.setOnClickListener(v -> {
-            onItemsClickListener.onDeleteItem(colorEntity);
+            onItemsClickListener.onDeleteItem(noteEntity);
         });
         refreshImageView.setOnClickListener(v -> {
-            onItemsClickListener.onRefreshItem(colorEntity);
+            onItemsClickListener.onRefreshItem(noteEntity);
         });
         rootCardView.setOnClickListener(v -> {
-            onItemsClickListener.onClickItem(colorEntity);
+            onItemsClickListener.onClickItem(noteEntity);
         });
         rootCardView.setOnLongClickListener(v -> {
-            onItemsClickListener.onDeleteItem(colorEntity);
+            onItemsClickListener.onDeleteItem(noteEntity);
             return true;
         });
     }
 
-    public void bind(ColorEntity item) {
+    public void bind(NoteEntity item) {
         //  наполняем вьюшку значениями
         // getContext(). mojno polu4at' context
         nameTextView.setText("#" + item.getHexString());
         rootCardView.setCardBackgroundColor(item.getColor());
 
-        colorEntity = item; // когда происходит бинд у нас что-то создаётся
+        noteEntity = item; // когда происходит бинд у нас что-то создаётся
     }
 
 
@@ -69,13 +66,13 @@ public class ColorViewHolder extends RecyclerView.ViewHolder {
 
 
     public interface OnItemsClickListener {
-        void onDeleteItem(ColorEntity item);
+        void onDeleteItem(NoteEntity item);
 
-        void onRefreshItem(ColorEntity item);
+        void onRefreshItem(NoteEntity item);
 
-        void onClickItem(ColorEntity item);
+        void onClickItem(NoteEntity item);
 
-        void onCreateItem(ColorEntity item);
+        void onCreateItem(NoteEntity item);
 
 
     }

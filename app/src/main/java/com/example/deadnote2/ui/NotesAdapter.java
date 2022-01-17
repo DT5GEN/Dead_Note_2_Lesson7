@@ -1,39 +1,38 @@
 package com.example.deadnote2.ui;
 
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.deadnote2.domain.ColorEntity;
+import com.example.deadnote2.domain.NoteEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColorsAdapter extends RecyclerView.Adapter<ColorViewHolder> {
+public class NotesAdapter extends RecyclerView.Adapter<NoteViewHolder> {
 
     private int holdersCounters = 0;
-    private ColorViewHolder.OnItemsClickListener onItemClickListener = null;
+    private NoteViewHolder.OnItemsClickListener onItemClickListener = null;
 
     // hranit kopiyu dannih
-    private final List<ColorEntity> data = new ArrayList<>();
+    private final List<NoteEntity> data = new ArrayList<>();
 
     @NonNull
     @Override
-    public ColorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // sozdayutsa view holdery
-        return new ColorViewHolder(parent, holdersCounters++, onItemClickListener);
+        return new NoteViewHolder(parent, holdersCounters++, onItemClickListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ColorViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
         // privyazyvaet znacheniya
-        ColorEntity colorEntity = getItem(position);
-        holder.bind(colorEntity);
+        NoteEntity noteEntity = getItem(position);
+        holder.bind(noteEntity);
     }
 
-    private ColorEntity getItem(int position) {
+    private NoteEntity getItem(int position) {
         // vichislenie konkretnoi pozicii
         return data.get(position);
     }
@@ -44,7 +43,7 @@ public class ColorsAdapter extends RecyclerView.Adapter<ColorViewHolder> {
         return data.size();
     }
 
-    public void setData(List<ColorEntity> colors) {
+    public void setData(List<NoteEntity> colors) {
         // ustanovka dannih i refresh
         data.clear();
         data.addAll(colors);
@@ -62,7 +61,7 @@ public class ColorsAdapter extends RecyclerView.Adapter<ColorViewHolder> {
         }
     }
 
-    public void setOnItemClickListener(ColorViewHolder.OnItemsClickListener onItemClickListener) {
+    public void setOnItemClickListener(NoteViewHolder.OnItemsClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 

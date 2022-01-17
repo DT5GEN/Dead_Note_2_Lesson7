@@ -12,14 +12,15 @@
         android:id="@+id/activity_main__scroll_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="scroll to Hell"
+        android:text="first victims"
         android:layout_margin="8dp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/activity_main__create_button"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="create color tabs"
+        android:text="Add the next victim"
         android:layout_margin="8dp"/>
 
 
