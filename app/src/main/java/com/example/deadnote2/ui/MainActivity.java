@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         onCreateButton = findViewById(R.id.activity_main__create_button);
         onCreateButton.setOnClickListener(v -> {
-            onCreateButton();
-            recyclerView.setAdapter(adapter);
+            //onCreateButton();
+            adapter.setData(colorsRepo.regenerateAddColors(1));
             Toast.makeText(this, "Создавайся! ", Toast.LENGTH_SHORT).show();
         });
         initRecycler();

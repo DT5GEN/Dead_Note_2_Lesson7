@@ -10,5 +10,5 @@ public interface ColorsRepo {
 
     void  onCreateNewCard(ArrayList<ColorEntity> dataNewCard);
 
-    void regenerateAddColors(int size1);
+    List<ColorEntity> regenerateAddColors(int size1);
 }

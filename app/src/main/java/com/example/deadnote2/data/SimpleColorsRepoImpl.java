@@ -11,7 +11,7 @@ import java.util.Random;
 import java.util.UUID;
 
 public class SimpleColorsRepoImpl implements ColorsRepo {
-    private static final int COLORS_LIST_SIZE = 15;
+    private static final int COLORS_LIST_SIZE = 3;
     private static final int COLORS_1_SIZE = 1;
 
     private List<ColorEntity> data = new ArrayList<>();
@@ -64,18 +64,19 @@ public class SimpleColorsRepoImpl implements ColorsRepo {
 
         }
     }
-    public void regenerateAddColors(int size1) {
-        size1 = 1;
-        for (int i = 0; i < 1; i++) {
+    public List<ColorEntity> regenerateAddColors(int size1) {
+
             ColorEntity colorEntity = new ColorEntity(
                     UUID.randomUUID().toString(),
-                    ColorUtils.setAlphaComponent(new Random().nextInt(), 255)
-            );
+                    ColorUtils.setAlphaComponent(new Random().nextInt(), 255) );
+
             data.add(colorEntity);
 
 
-        }
+        return data;
+    }
+
     }
 
 
-}
+
