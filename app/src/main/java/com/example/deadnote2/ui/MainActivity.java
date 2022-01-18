@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements NotesRepo {
             // получаеm сообщение с + данные из ColorEntity
             @Override
             public void onClickItem(NoteEntity item) {
-                rootLinearLayout.setBackgroundColor(item.getColor());
+               // rootLinearLayout.setBackgroundColor(item.getColor());
 
                 // Чтобы стартовать активити, надо подготовить интент
                 // В данном случае это будет явный интент, поскольку здесь передаётся класс активити

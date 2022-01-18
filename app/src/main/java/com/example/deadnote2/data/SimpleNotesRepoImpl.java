@@ -67,6 +67,8 @@ public class SimpleNotesRepoImpl implements NotesRepo {
     }
     public List<NoteEntity> regenerateAddNotes(int size1) {
 
+   //     NoteEntity noteEntity = new NoteEntity("1arg","2arg");
+
             NoteEntity noteEntity = new NoteEntity(
                     UUID.randomUUID().toString(),
                     ColorUtils.setAlphaComponent(16774381, 255) );

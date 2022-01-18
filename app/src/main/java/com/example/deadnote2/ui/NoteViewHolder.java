@@ -31,7 +31,7 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
         // запоминает созданные вьюшки, razduvayet i  napolnyaet i hranit na sebya ssilki
         super(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_color, parent, false));
-        numberTextView.setText(" " + holderNumber);
+        numberTextView.setText("№ " + (holderNumber +1 )+ "  Заглавие");
 //        View view = LayoutInflater.from(parent.getContext())
 //                .inflate(R.layout.item_color, parent, false);
 //        super(view);
@@ -53,7 +53,9 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
     public void bind(NoteEntity item) {
         //  наполняем вьюшку значениями
         // getContext(). mojno polu4at' context
-        nameTextView.setText("#" + item.getHexString());
+//        nameTextView.setText("#" + item.getHexString());
+//        rootCardView.setCardBackgroundColor(item.getColor());
+        nameTextView.setText("New story ..");  // дефолтный текст заметки
         rootCardView.setCardBackgroundColor(item.getColor());
 
         noteEntity = item; // когда происходит бинд у нас что-то создаётся
