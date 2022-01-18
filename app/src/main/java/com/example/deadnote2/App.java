@@ -2,13 +2,13 @@ package com.example.deadnote2;
 
 import android.app.Application;
 
-import com.example.deadnote2.data.SimpleColorsRepoImpl;
-import com.example.deadnote2.domain.ColorsRepo;
+import com.example.deadnote2.data.SimpleNotesRepoImpl;
+import com.example.deadnote2.domain.NotesRepo;
 
 public class App extends Application {
     private static App sInstance = null;
 
-    public final ColorsRepo colorsRepo = new SimpleColorsRepoImpl();
+    public final NotesRepo notesRepo = new SimpleNotesRepoImpl();
     @Override
     public void onCreate() {
         super.onCreate();
