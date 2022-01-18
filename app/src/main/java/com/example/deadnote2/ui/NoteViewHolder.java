@@ -15,9 +15,9 @@ import com.example.deadnote2.domain.NoteEntity;
 
 public class NoteViewHolder extends RecyclerView.ViewHolder {
 
-    private final TextView nameTextView = itemView.findViewById(R.id.preview_text_view);
+    private final TextView nameTextView = itemView.findViewById(R.id.preview_edit_text);
     private final CardView rootCardView = itemView.findViewById(R.id.root_card_view);
-    private final TextView numberTextView = itemView.findViewById(R.id.heading_text_view);
+    private final TextView numberTextView = itemView.findViewById(R.id.heading_edit_text);
     private final AppCompatImageView refreshImageView = itemView.findViewById(R.id.item_color__refresh_image_view);
     private final AppCompatImageView deleteImageView = itemView.findViewById(R.id.item_color__delete_image_view);
 
