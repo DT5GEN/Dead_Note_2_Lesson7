@@ -11,4 +11,6 @@ public interface NotesRepo {
     void  onCreateNewCard(ArrayList<NoteEntity> dataNewCard);
 
     List<NoteEntity> regenerateAddNotes(int size1);
+
+    String YOUR_NOTE = "YOUR_NOTE";
 }

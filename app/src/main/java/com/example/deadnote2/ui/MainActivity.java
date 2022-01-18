@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -15,9 +16,12 @@ import com.example.deadnote2.data.SimpleNotesRepoImpl;
 import com.example.deadnote2.domain.NoteEntity;
 import com.example.deadnote2.domain.NotesRepo;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class MainActivity extends AppCompatActivity implements NotesRepo {
 
+    private static final int REQUEST_CODE_SETTING_ACTIVITY = 99;
     private NotesAdapter adapter;
     private RecyclerView recyclerView;
     private LinearLayout rootLinearLayout;
@@ -28,12 +32,16 @@ public class MainActivity extends AppCompatActivity {
     private NotesRepo notesRepo;
     private NotesRepo addNotesRepo = SimpleNotesRepoImpl.getInstance();
 
+    private NoteEntity newNoteMainActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         notesRepo = App.get().notesRepo;
+
+        newNoteMainActivity = new NoteEntity();
 
         scrollButton = findViewById(R.id.activity_main__scroll_button);
         scrollButton.setOnClickListener(v -> {
@@ -80,6 +88,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClickItem(NoteEntity item) {
                 rootLinearLayout.setBackgroundColor(item.getColor());
+
+                // Чтобы стартовать активити, надо подготовить интент
+                // В данном случае это будет явный интент, поскольку здесь передаётся класс активити
+                Intent runSettings = new Intent(MainActivity.this, NoteRedactor.class);
+              //  populateAccount();
+                // Передача данных через интент
+                runSettings.putExtra(YOUR_NOTE, newNoteMainActivity);
+                startActivityForResult(runSettings, REQUEST_CODE_SETTING_ACTIVITY);
+
                 Toast.makeText(MainActivity.this, "Change Color "  + item.getHexString(), Toast.LENGTH_SHORT).show();
             }
 
@@ -109,5 +126,25 @@ public class MainActivity extends AppCompatActivity {
     private void onCreateButton() {
         addNotesRepo.regenerateAddNotes(1);
 
+    }
+
+    @Override
+    public List<NoteEntity> getNotes() {
+        return null;
+    }
+
+    @Override
+    public void deleteItem(String id) {
+
+    }
+
+    @Override
+    public void onCreateNewCard(ArrayList<NoteEntity> dataNewCard) {
+
+    }
+
+    @Override
+    public List<NoteEntity> regenerateAddNotes(int size1) {
+        return null;
     }
 }
