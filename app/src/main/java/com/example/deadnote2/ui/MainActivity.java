@@ -1,5 +1,6 @@
 package com.example.deadnote2.ui;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.deadnote2.App;
@@ -20,6 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NotesRepo {
+
+    public static final String KEY_MESSAGE = "messageKey_1";
+    public static final int REQUEST_CODE = 1;
+    TextView headingTextMainActivity;
+    TextView bodyTextMainActivity;
 
     private static final int REQUEST_CODE_SETTING_ACTIVITY = 99;
     private NotesAdapter adapter;
@@ -38,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements NotesRepo {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        headingTextMainActivity = findViewById(R.id.heading_edit_text);
 
         notesRepo = App.get().notesRepo;
 
@@ -58,8 +67,29 @@ public class MainActivity extends AppCompatActivity implements NotesRepo {
         });
         initRecycler();
 
+        // Добавим обмен информацией
+         Intent intentGetSavedNotesNotesRedactor = getIntent();
+         Bundle extractText = intentGetSavedNotesNotesRedactor.getExtras();
+         if (extractText != null) {
+             String savedHeading = extractText.getString(KEY_MESSAGE);
+             headingTextMainActivity.setText(savedHeading);
+         }
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK)
+            if (requestCode == REQUEST_CODE) {
+                String answerMessageAOR = data.getExtras().getString(KEY_MESSAGE);
+                headingTextMainActivity.setText("onActivityResult WorK " + answerMessageAOR);
+            }
+
+
+
+    }
 
     private void initRecycler() {
         recyclerView = findViewById(R.id.activity_main__recycler_view);
